@@ -86,7 +86,7 @@ export default function Contact() {
     <footer id="contact" className="relative px-4 pt-12 pb-10 sm:px-6">
       <div className="mx-auto max-w-7xl">
         <Reveal>
-          <div className="relative overflow-hidden rounded-3xl border border-brand-500/30 bg-gradient-to-br from-brand-600/25 via-ink-800 to-ink-900 p-8 sm:p-12 lg:p-16">
+          <div className="relative overflow-hidden rounded-3xl border border-brand-500/30 bg-gradient-to-br from-brand-600/25 via-ink-800 to-ink-900 p-6 sm:p-10 lg:p-16">
             <div className="grid-bg absolute inset-0 opacity-60 [mask-image:linear-gradient(to_left,black,transparent)]" />
             <div className="absolute -top-24 -right-24 size-72 rounded-full bg-brand-500/30 blur-3xl" />
             <div className="relative grid items-start gap-10 lg:grid-cols-2">
@@ -111,7 +111,7 @@ export default function Contact() {
                           </span>
                           <span className="min-w-0">
                             <span className="block text-xs text-slate-500">{item.label}</span>
-                            <span className="block truncate font-medium text-white">{item.value}</span>
+                            <span className="block font-medium break-words text-white">{item.value}</span>
                           </span>
                         </Tag>
                       </li>
@@ -146,7 +146,7 @@ export default function Contact() {
             </ul>
           </nav>
         </div>
-        <p className="mt-10 text-center text-xs text-slate-600">© Ddosphere {new Date().getFullYear()}, All Rights Reserved</p>
+        <p className="mt-10 text-center text-xs text-slate-600">© Ddosphere 2024, All Rights Reserved</p>
       </div>
     </footer>
   );

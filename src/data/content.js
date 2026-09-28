@@ -32,7 +32,7 @@ import {
 } from 'lucide-react';
 
 export const APP_URL = 'https://app.ddosphere.com/login';
-export const USER_GUIDE_URL = 'https://ddosphere.com/user-guide';
+export const USER_GUIDE_URL = 'https://ddosphere.gitbook.io/ddosphere';
 
 export const NAV_LINKS = [
   { label: 'Home', href: '#home' },
@@ -48,7 +48,7 @@ export const HERO = {
   titleTop: 'Prove Your Defenses Against',
   titleBottom: 'Real-World DDoS Pressure',
   description:
-    'Ddosphere is an enterprise platform for authorized DDoS resilience testing. Safely simulate distributed load against infrastructure you own — under explicit authorization and defined scope — to validate mitigation, measure recovery, and harden your defenses before attackers find the gaps.',
+    'Ddosphere is an enterprise, cloud-based platform for authorized DDoS resilience testing. Simulate real distributed load on infrastructure you own — under explicit authorization and defined scope — to validate mitigation, measure recovery, and prove your defenses hold.',
 };
 
 // Shown as a compliance/authorization strip under the hero.

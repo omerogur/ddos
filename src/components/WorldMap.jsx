@@ -14,6 +14,9 @@ const HUBS = [
   ['Mumbai', 72.9, 19.1], ['Delhi', 77.2, 28.6], ['Singapore', 103.8, 1.4], ['Bangkok', 100.5, 13.7],
   ['Hong Kong', 114.2, 22.3], ['Beijing', 116.4, 39.9], ['Shanghai', 121.5, 31.2],
   ['Tokyo', 139.7, 35.7], ['Seoul', 127, 37.5], ['Sydney', 151.2, -33.9], ['Perth', 115.9, -31.9],
+  // Northern hubs (high latitude — sit near the top of the map)
+  ['Oslo', 10.7, 59.9], ['Helsinki', 24.9, 60.2], ['Reykjavik', -21.9, 64.1],
+  ['Warsaw', 21, 52.2], ['Calgary', -114, 51], ['Novosibirsk', 82.9, 55], ['Kyiv', 30.5, 50.5],
 ];
 
 // Curated routes [srcIdx, dstIdx] converging on a few targets.
@@ -21,6 +24,9 @@ const ROUTES = [
   [3, 15], [0, 15], [35, 15], [11, 15], [22, 15], [19, 15], [16, 15], [1, 3],
   [37, 26], [30, 26], [28, 26], [23, 26], [25, 26], [32, 35], [36, 30], [33, 30],
   [6, 3], [13, 3], [12, 3], [5, 3], [10, 11], [24, 26],
+  // Northern origins — arcs streaking across the top of the map
+  [43, 3], [8, 3], [41, 3], [4, 15], [2, 3], [39, 15], [40, 15], [42, 15],
+  [18, 15], [45, 15], [44, 33], [19, 26], [34, 35], [29, 26], [9, 3], [38, 30],
 ];
 const TARGETS = [15, 26, 3, 30, 35];
 

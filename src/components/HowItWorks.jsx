@@ -1,6 +1,14 @@
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import { STEPS } from '../data/content';
 import { Reveal, Section, SectionHeading } from './ui';
+
+const PULSE_TRANSITION = {
+  duration: 4.6,
+  times: [0, 0.12, 0.85, 1],
+  ease: 'linear',
+  repeat: Infinity,
+  repeatDelay: 0.7,
+};
 
 function StepNode({ icon: Icon, index }) {
   return (
@@ -15,6 +23,8 @@ function StepNode({ icon: Icon, index }) {
 }
 
 export default function HowItWorks() {
+  const reduce = useReducedMotion();
+
   return (
     <Section id="how-it-works" className="border-y border-white/5 bg-ink-900/50">
       <SectionHeading
@@ -34,6 +44,16 @@ export default function HowItWorks() {
           viewport={{ once: true, margin: '-120px' }}
           transition={{ duration: 1.6, ease: [0.22, 1, 0.36, 1] }}
         />
+        {!reduce && (
+          <div className="pointer-events-none absolute top-7 right-[8.33%] left-[8.33%]">
+            <motion.span
+              className="absolute -top-[5px] size-2.5 rounded-full bg-brand-200 shadow-[0_0_16px_6px_rgb(255_138_0/0.55)]"
+              initial={{ left: '0%', opacity: 0 }}
+              animate={{ left: ['0%', '100%'], opacity: [0, 1, 1, 0] }}
+              transition={PULSE_TRANSITION}
+            />
+          </div>
+        )}
         <ol className="relative grid grid-cols-6">
           {STEPS.map((s, i) => (
             <li key={s.label} className="group flex flex-col items-center px-3 text-center">
@@ -55,6 +75,16 @@ export default function HowItWorks() {
       {/* Mobile / tablet: vertical timeline */}
       <ol className="relative mx-auto mt-14 max-w-md lg:hidden">
         <span className="absolute top-7 bottom-7 left-7 w-px bg-gradient-to-b from-brand-500/50 via-white/10 to-transparent" />
+        {!reduce && (
+          <div className="pointer-events-none absolute top-7 bottom-7 left-7">
+            <motion.span
+              className="absolute -left-[4.5px] size-2.5 rounded-full bg-brand-200 shadow-[0_0_16px_6px_rgb(255_138_0/0.55)]"
+              initial={{ top: '0%', opacity: 0 }}
+              animate={{ top: ['0%', '100%'], opacity: [0, 1, 1, 0] }}
+              transition={PULSE_TRANSITION}
+            />
+          </div>
+        )}
         {STEPS.map((s, i) => (
           <li key={s.label} className="group relative flex gap-5 pb-10 last:pb-0">
             <div className="relative z-10 shrink-0">

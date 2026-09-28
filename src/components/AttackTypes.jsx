@@ -76,7 +76,7 @@ export default function AttackTypes() {
           />
         </div>
         <Reveal delay={0.1} className="lg:col-span-8">
-          <figure className="ring-gradient overflow-hidden rounded-3xl bg-white p-4 shadow-[0_30px_70px_-25px_rgb(0_0_0/0.7)] sm:p-6">
+          <figure className="ring-gradient mx-auto w-full max-w-xl overflow-hidden rounded-3xl bg-white p-4 shadow-[0_30px_70px_-25px_rgb(0_0_0/0.7)] sm:p-5">
             <img
               src={ATTACK_LEVELS.image}
               alt="Maximal volume per phase: five attack levels with their BPS, PPS, and TPS values, from Level 1 (5 Mbps / 5 K / 500) up to Level 5 (50 Gbps / 20 M / 1 M)."
