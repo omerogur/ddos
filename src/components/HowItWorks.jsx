@@ -1,35 +1,73 @@
+import { motion } from 'framer-motion';
 import { STEPS } from '../data/content';
 import { Reveal, Section, SectionHeading } from './ui';
+
+function StepNode({ icon: Icon, index }) {
+  return (
+    <span className="relative flex size-14 items-center justify-center rounded-2xl border border-white/10 bg-ink-900 text-brand-300 shadow-[inset_0_1px_0_0_rgb(255_255_255/0.06)] ring-1 ring-brand-500/25 transition-all duration-300 group-hover:-translate-y-0.5 group-hover:text-brand-200 group-hover:ring-brand-500/60">
+      <span className="pointer-events-none absolute inset-0 rounded-2xl bg-brand-500/0 blur-md transition-colors duration-300 group-hover:bg-brand-500/20" />
+      <Icon className="relative size-6" />
+      <span className="absolute -top-2 -right-2 flex size-5 items-center justify-center rounded-full bg-gradient-to-b from-brand-400 to-brand-600 text-[10px] font-bold text-white ring-2 ring-ink-900">
+        {index + 1}
+      </span>
+    </span>
+  );
+}
 
 export default function HowItWorks() {
   return (
     <Section id="how-it-works" className="border-y border-white/5 bg-ink-900/50">
       <SectionHeading
         eyebrow="How It Works"
-        title="Steps for"
-        highlight="Beginning"
-        description="Navigating Security Simplified with Ddosphere"
+        title="Six simple"
+        highlight="steps"
+        description="A controlled, repeatable process — every test is authorized, observable, and measurable."
       />
 
-      <ol className="relative mt-16 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {STEPS.map((s, i) => (
-          <Reveal key={s.label} delay={(i % 3) * 0.08} className="h-full">
-            <li className="card ring-gradient glow-hover group relative h-full overflow-hidden p-7 transition-transform duration-300 hover:-translate-y-1.5">
-              <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-brand-500 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-              <div className="flex items-center justify-between">
-                <span className="flex size-12 items-center justify-center rounded-xl border border-brand-500/25 bg-brand-500/10 text-brand-300 shadow-[inset_0_1px_0_0_rgb(255_255_255/0.08)] transition-all duration-300 group-hover:scale-110 group-hover:border-brand-500/50">
-                  <s.icon className="size-5" />
-                </span>
-                <span className="font-display text-6xl font-bold text-white/[0.05] transition-colors duration-300 group-hover:text-brand-500/25">
-                  {String(i + 1).padStart(2, '0')}
-                </span>
-              </div>
-              <p className="mt-6 text-xs font-semibold tracking-[0.18em] text-brand-300 uppercase">
-                Step {i + 1} – {s.label}
-              </p>
-              <h3 className="mt-2 font-display text-xl font-semibold text-white">{s.text}</h3>
+      {/* Desktop: horizontal connected stepper */}
+      <div className="relative mt-20 hidden lg:block">
+        <div className="absolute top-7 right-[8.33%] left-[8.33%] h-px bg-white/10" />
+        <motion.div
+          className="absolute top-7 left-[8.33%] h-px w-[83.34%] origin-left bg-gradient-to-r from-brand-600 via-brand-400 to-brand-300"
+          initial={{ scaleX: 0 }}
+          whileInView={{ scaleX: 1 }}
+          viewport={{ once: true, margin: '-120px' }}
+          transition={{ duration: 1.6, ease: [0.22, 1, 0.36, 1] }}
+        />
+        <ol className="relative grid grid-cols-6">
+          {STEPS.map((s, i) => (
+            <li key={s.label} className="group flex flex-col items-center px-3 text-center">
+              <Reveal delay={0.15 + i * 0.12}>
+                <StepNode icon={s.icon} index={i} />
+              </Reveal>
+              <Reveal delay={0.2 + i * 0.12}>
+                <p className="mt-5 text-[11px] font-semibold tracking-[0.2em] text-brand-300/80 uppercase">
+                  Step {String(i + 1).padStart(2, '0')}
+                </p>
+                <h3 className="mt-1.5 font-display text-base font-semibold text-white">{s.label}</h3>
+                <p className="mx-auto mt-2 max-w-[15rem] text-sm leading-relaxed text-slate-400">{s.text}</p>
+              </Reveal>
             </li>
-          </Reveal>
+          ))}
+        </ol>
+      </div>
+
+      {/* Mobile / tablet: vertical timeline */}
+      <ol className="relative mx-auto mt-14 max-w-md lg:hidden">
+        <span className="absolute top-7 bottom-7 left-7 w-px bg-gradient-to-b from-brand-500/50 via-white/10 to-transparent" />
+        {STEPS.map((s, i) => (
+          <li key={s.label} className="group relative flex gap-5 pb-10 last:pb-0">
+            <div className="relative z-10 shrink-0">
+              <StepNode icon={s.icon} index={i} />
+            </div>
+            <div className="pt-1.5">
+              <p className="text-[11px] font-semibold tracking-[0.2em] text-brand-300/80 uppercase">
+                Step {String(i + 1).padStart(2, '0')}
+              </p>
+              <h3 className="mt-1 font-display text-lg font-semibold text-white">{s.label}</h3>
+              <p className="mt-1.5 text-sm leading-relaxed text-slate-400">{s.text}</p>
+            </div>
+          </li>
         ))}
       </ol>
     </Section>
