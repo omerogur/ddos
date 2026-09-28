@@ -1,0 +1,150 @@
+@import 'tailwindcss';
+
+@theme {
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'Space Grotesk', 'Inter', sans-serif;
+  --color-ink-950: #06070c;
+  --color-ink-900: #0a0c14;
+  --color-ink-800: #12151f;
+  --color-ink-700: #1c2030;
+  --color-brand-300: #ffc27a;
+  --color-brand-400: #ffa23d;
+  --color-brand-500: #ff8a00;
+  --color-brand-600: #f06a00;
+  --color-brand-700: #c9560a;
+}
+
+html {
+  scroll-padding-top: 5rem;
+}
+
+body {
+  @apply bg-ink-950 font-sans text-slate-300 antialiased;
+  background-image:
+    radial-gradient(60rem 40rem at 80% -10%, rgb(255 138 0 / 0.1), transparent 60%),
+    radial-gradient(50rem 35rem at 0% 20%, rgb(255 138 0 / 0.05), transparent 55%);
+  background-attachment: fixed;
+}
+
+/* Fine film grain to kill flat gradients — the "premium" tell. */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+#root {
+  position: relative;
+  z-index: 2;
+}
+
+.text-gradient {
+  @apply bg-gradient-to-br from-white via-brand-300 to-brand-500 bg-clip-text text-transparent;
+}
+
+.text-gradient-brand {
+  @apply bg-gradient-to-r from-brand-300 via-brand-400 to-brand-600 bg-clip-text text-transparent;
+}
+
+.grid-bg {
+  background-image:
+    linear-gradient(to right, rgb(255 255 255 / 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(255 255 255 / 0.035) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+
+.card {
+  @apply rounded-2xl border border-white/8 bg-white/[0.025] backdrop-blur-sm;
+}
+
+/* Gradient hairline border via mask — crisp on any background. */
+.ring-gradient {
+  position: relative;
+}
+.ring-gradient::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(140deg, rgb(255 255 255 / 0.22), rgb(255 255 255 / 0.02) 40%, transparent 70%);
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* Soft radial glow that fades in on hover. */
+.glow-hover {
+  position: relative;
+  isolation: isolate;
+}
+.glow-hover::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: radial-gradient(28rem 28rem at var(--mx, 50%) var(--my, 0%), rgb(255 138 0 / 0.16), transparent 42%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: -1;
+}
+.glow-hover:hover::before {
+  opacity: 1;
+}
+
+.aurora {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(90px);
+  animation: aurora 14s ease-in-out infinite alternate;
+}
+@keyframes aurora {
+  0% { transform: translate3d(0, 0, 0) scale(1); }
+  100% { transform: translate3d(4%, 6%, 0) scale(1.12); }
+}
+
+@keyframes meteor {
+  0% { transform: translate(0, 0) rotate(215deg); opacity: 1; }
+  70% { opacity: 1; }
+  100% { transform: translate(-600px, 600px) rotate(215deg); opacity: 0; }
+}
+.meteor {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  border-radius: 9999px;
+  background: #ffb45c;
+  box-shadow: 0 0 0 1px rgb(255 255 255 / 0.05);
+  animation: meteor linear infinite;
+}
+.meteor::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 90px;
+  height: 1px;
+  transform: translateY(-50%);
+  background: linear-gradient(90deg, #ff8a00, transparent);
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.marquee-track {
+  animation: marquee 32s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .meteor,
+  .aurora { animation: none; }
+  .marquee-track { animation: none; }
+  html { scroll-behavior: auto; }
+}
