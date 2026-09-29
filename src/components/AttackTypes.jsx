@@ -4,13 +4,13 @@ import { Reveal, Section, SectionHeading } from './ui';
 function TypeItem({ item, delay }) {
   return (
     <Reveal delay={delay}>
-      <div className="group flex gap-5">
-        <span className="flex size-12 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-brand-400/25 to-brand-600/10 text-brand-300 shadow-[inset_0_1px_0_0_rgb(255_255_255/0.1)] ring-1 ring-brand-500/25 transition-all duration-300 group-hover:scale-110 group-hover:text-brand-200">
+      <div className="group flex gap-5 rounded-2xl border border-white/10 bg-white/[0.045] p-5 shadow-[inset_0_1px_0_0_rgb(255_255_255/0.05)] backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-white/20 hover:bg-white/[0.07]">
+        <span className="flex size-12 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-brand-400/30 to-brand-600/15 text-brand-300 shadow-[inset_0_1px_0_0_rgb(255_255_255/0.15)] ring-1 ring-brand-500/30 transition-all duration-300 group-hover:scale-110 group-hover:text-brand-200">
           <item.icon className="size-5" />
         </span>
         <div>
           <h3 className="font-display text-lg font-semibold text-white">{item.title}</h3>
-          <p className="mt-1.5 text-sm leading-relaxed text-slate-400">{item.text}</p>
+          <p className="mt-1.5 text-sm leading-relaxed text-slate-300">{item.text}</p>
         </div>
       </div>
     </Reveal>
@@ -32,7 +32,7 @@ export default function AttackTypes() {
   const groupB = ATTACK_TYPES.slice(3); // HTTP / UDP / ICMP
 
   return (
-    <Section id="attack-types" className="border-t border-white/5">
+    <Section id="attack-types" className="surface-lift overflow-hidden border-y border-white/8">
       <SectionHeading
         eyebrow="Attack Types & Levels"
         title="Attack Simulation"
@@ -42,7 +42,7 @@ export default function AttackTypes() {
 
       {/* Block A: TCP family + dashboard illustration */}
       <div className="mt-20 grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
-        <div className="space-y-9">
+        <div className="space-y-5">
           {groupA.map((a, i) => (
             <TypeItem key={a.title} item={a} delay={i * 0.08} />
           ))}
@@ -57,7 +57,7 @@ export default function AttackTypes() {
           alt="Isometric server infrastructure illustration"
           className="order-last mx-auto max-w-[16rem] lg:order-first lg:max-w-xs"
         />
-        <div className="space-y-9">
+        <div className="space-y-5">
           {groupB.map((a, i) => (
             <TypeItem key={a.title} item={a} delay={i * 0.08} />
           ))}

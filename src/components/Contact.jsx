@@ -1,11 +1,10 @@
 import { useState } from 'react';
-import { Mail, MapPin, Phone, Send } from 'lucide-react';
+import { Mail, MapPin, Send } from 'lucide-react';
 import { CONTACT, NAV_LINKS } from '../data/content';
 import { Reveal } from './ui';
 
 const INFO = [
   { icon: MapPin, label: 'Office', value: CONTACT.office },
-  { icon: Phone, label: 'Call Us', value: CONTACT.phone, href: `tel:${CONTACT.phone.replace(/\s/g, '')}` },
   { icon: Mail, label: 'Email', value: CONTACT.email, href: `mailto:${CONTACT.email}` },
 ];
 

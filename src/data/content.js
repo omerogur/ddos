@@ -87,7 +87,18 @@ export const BENEFITS = [
 // Industries served (not customer logos). Swap in real customer/partner names when available.
 export const TRUST = {
   heading: 'Purpose-built for security & infrastructure teams across',
-  logos: ['Fintech', 'Hosting & Cloud', 'Telecom', 'E-commerce', 'Public Sector', 'Gaming', 'Enterprise SOCs'],
+  logos: [
+    'Banking',
+    'Insurance',
+    'Financial Services & Payment Systems',
+    'Energy & Utilities',
+    'Telecommunications',
+    'Aviation',
+    'Healthcare',
+    'Government & Critical Infrastructure',
+    'Cloud & Data Center Services',
+    'Transportation & Logistics',
+  ],
 };
 
 export const COMPLIANCE = [
